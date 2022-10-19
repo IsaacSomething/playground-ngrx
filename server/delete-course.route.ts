@@ -5,12 +5,8 @@ export function deleteCourse(req: Request, res: Response) {
   console.log('Deleting course ...');
 
   const id = req.params['id'];
-
   const course = COURSES[id];
-
   delete COURSES[id];
 
-  setTimeout(() => {
-    res.status(200).json({ id });
-  }, 2000);
+  setTimeout(() => res.status(200).json({ id }), 2000);
 }

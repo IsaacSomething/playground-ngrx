@@ -14,15 +14,11 @@ export function searchLessons(req: Request, res: Response) {
     pageSize = parseInt(queryParams.pageSize);
 
   let lessons = Object.values(LESSONS)
-    .filter((lesson) => lesson.courseId == courseId)
+    .filter(lesson => lesson.courseId == courseId)
     .sort((l1, l2) => l1.id - l2.id);
 
   if (filter) {
-    lessons = lessons.filter(
-      (lesson) =>
-        lesson.description.trim().toLowerCase().search(filter.toLowerCase()) >=
-        0
-    );
+    lessons = lessons.filter(lesson => lesson.description.trim().toLowerCase().search(filter.toLowerCase()) >= 0);
   }
 
   if (sortOrder == 'desc') {
@@ -30,12 +26,7 @@ export function searchLessons(req: Request, res: Response) {
   }
 
   const initialPos = pageNumber * pageSize;
-
-  console.log(
-    `Retrieving lessons page starting at position ${initialPos}, page size ${pageSize} for course ${courseId}`
-  );
-
+  console.log(`Retrieving lessons page starting at position ${initialPos}, page size ${pageSize} for course ${courseId}`);
   const lessonsPage = lessons.slice(initialPos, initialPos + pageSize);
-
   res.status(200).json(lessonsPage);
 }

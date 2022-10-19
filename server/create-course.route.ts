@@ -11,14 +11,12 @@ export function createCourse(req: Request, res: Response) {
   const newCourse = {
     id: coursesKeyCounter,
     seqNo: coursesKeyCounter,
-    ...changes,
+    ...changes
   };
 
   COURSES[newCourse.id] = newCourse;
 
   coursesKeyCounter += 1;
 
-  setTimeout(() => {
-    res.status(200).json(newCourse);
-  }, 2000);
+  setTimeout(() => res.status(200).json(newCourse), 2000);
 }
