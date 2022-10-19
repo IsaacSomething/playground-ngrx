@@ -7,21 +7,21 @@
     </div>
 
     <ng-container [formGroup]="form">
-      <mat-form-field>
+      <mat-form-field class="full">
         <input matInput placeholder="Course Description" formControlName="description" />
       </mat-form-field>
 
       <ng-container *ngIf="mode == 'create'">
-        <mat-form-field>
+        <mat-form-field class="full">
           <input matInput placeholder="Course Url" formControlName="url" />
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="full">
           <input matInput placeholder="Course Icon Url" formControlName="iconUrl" />
         </mat-form-field>
       </ng-container>
 
-      <mat-form-field>
+      <mat-form-field class="full">
         <mat-select placeholder="Select category" formControlName="category">
           <mat-option value="BEGINNER"> Beginner</mat-option>
           <mat-option value="INTERMEDIATE"> Intermediate</mat-option>
@@ -29,7 +29,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field class="full">
         <textarea matInput placeholder="Description" formControlName="longDescription"> </textarea>
       </mat-form-field>
 

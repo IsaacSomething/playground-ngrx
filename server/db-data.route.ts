@@ -8,9 +8,9 @@ export const USERS = {
     role: 'Tester'
   },
   2: {
-    id: 1,
+    id: 2,
     email: 'arkade@angular-university.io',
-    password: 'arkade',
+    password: 'test',
     image: 'https://picsum.photos/id/238/20/20',
     name: 'Arkade',
     role: 'System Admin'
