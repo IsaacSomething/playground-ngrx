@@ -7,29 +7,35 @@
     <mat-spinner></mat-spinner>
   </div>
 
-  <ng-container *ngIf="lessons$ | async as lessons">
-    <mat-table class="lessons-table mat-elevation-z8" [dataSource]="lessons">
-      <ng-container matColumnDef="seqNo">
-        <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
-        <mat-cell *matCellDef="let lesson">{{ lesson.seqNo }}</mat-cell>
-      </ng-container>
+  <br />
 
-      <ng-container matColumnDef="description">
-        <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
-        <mat-cell class="description-cell" *matCellDef="let lesson">{{ lesson.description }}</mat-cell>
-      </ng-container>
+  <mat-table *ngIf="lessons$ | async as lessons" class="margin-top border mat-elevation-z0" [dataSource]="lessons">
+    <ng-container matColumnDef="seqNo">
+      <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{ lesson.seqNo }}</mat-cell>
+    </ng-container>
 
-      <ng-container matColumnDef="duration">
-        <mat-header-cell *matHeaderCellDef>Duration</mat-header-cell>
-        <mat-cell class="duration-cell" *matCellDef="let lesson">{{ lesson.duration }}</mat-cell>
-      </ng-container>
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{ lesson.description }}</mat-cell>
+    </ng-container>
 
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <ng-container matColumnDef="duration">
+      <mat-header-cell *matHeaderCellDef>Duration</mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{ lesson.duration }}</mat-cell>
+    </ng-container>
 
-      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-    </mat-table>
-  </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 
-  <button mat-stroked-button class="margin-top" (click)="loadLessonsPage(course)">Load More</button>
+    <!-- Disclaimer column -->
+    <ng-container matColumnDef="loadMore">
+      <td mat-footer-cell *matFooterCellDef colspan="2">
+        <button mat-stroked-button class="margin-vertical" (click)="loadLessonsPage(course)">Load More</button>
+      </td>
+    </ng-container>
+
+    <tr mat-footer-row *matFooterRowDef="['loadMore']"></tr>
+  </mat-table>
 </div>

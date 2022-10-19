@@ -16,10 +16,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 const ngrxImports = [
-  StoreModule.forRoot(reducers, {
-    metaReducers
-  }),
-  StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+  StoreModule.forRoot(reducers, { metaReducers }),
+  StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production, autoPause: true })
 ];
 
 import { AppComponent } from './app.component';

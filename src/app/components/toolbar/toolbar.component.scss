@@ -1,3 +1,12 @@
 .title {
   font-size: 16px;
 }
+
+.user {
+  margin: 0 8px;
+  height: 30px;
+  cursor: pointer;
+  img {
+    border-radius: 50%;
+  }
+}

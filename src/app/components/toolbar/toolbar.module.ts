@@ -9,7 +9,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatDialogModule } from '@angular/material/dialog';
-const materialImports = [MatIconModule, MatToolbarModule, MatButtonModule, MatBadgeModule, MatDialogModule];
+import { MatMenuModule } from '@angular/material/menu';
+const materialImports = [MatIconModule, MatToolbarModule, MatButtonModule, MatBadgeModule, MatDialogModule, MatMenuModule];
 
 import { ToolbarComponent } from './toolbar.component';
 

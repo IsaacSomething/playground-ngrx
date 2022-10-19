@@ -1,5 +1,10 @@
 $positions: top, left, bottom, right;
 
+@mixin pad-doubles($type, $first, $second) {
+  #{$type}-#{$first}: var(--base-spacing) !important;
+  #{$type}-#{$second}: var(--base-spacing) !important;
+}
+
 /* MARGINS */
 .margin {
   margin: var(--base-spacing) !important;
@@ -15,6 +20,14 @@ $positions: top, left, bottom, right;
   }
 }
 
+.margin-horizontal {
+  @include pad-doubles(margin, left, right);
+}
+
+.margin-vertical {
+  @include pad-doubles(margin, top, bottom);
+}
+
 /* PADDING */
 .padding {
   padding: var(--base-spacing) !important;
@@ -28,6 +41,14 @@ $positions: top, left, bottom, right;
   .padding-#{$padding} {
     padding-#{$padding}: var(--base-spacing) !important;
   }
+}
+
+.padding-horizontal {
+  @include pad-doubles(padding, left, right);
+}
+
+.padding-vertical {
+  @include pad-doubles(padding, top, bottom);
 }
 
 /* TEXT */
@@ -88,4 +109,12 @@ $font-weight: 400, 500, 700, 900;
 
 .reverse {
   transform: rotate(180deg);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.border {
+  border: 1px solid var(--base-divider);
 }
