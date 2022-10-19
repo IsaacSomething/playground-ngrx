@@ -1,0 +1,12 @@
+<mat-sidenav-container [class.hide]="url$ | async">
+  <mat-sidenav #sidenav mode="side" [opened]="!(small$ | async)">
+    <base-menu></base-menu>
+  </mat-sidenav>
+
+  <mat-sidenav-content [class.small]="small$ | async">
+    <base-toolbar [sidenav]="sidenav" [small]="small$ | async" [hideActions]="url$ | async"></base-toolbar>
+    <div class="margin">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

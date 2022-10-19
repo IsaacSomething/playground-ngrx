@@ -1,0 +1,17 @@
+<mat-toolbar>
+  <button mat-icon-button *ngIf="small" (click)="sidenav.toggle()">
+    <mat-icon>{{ sidenav.opened ? 'menu_open' : 'menu' }}</mat-icon>
+  </button>
+  <span class="title">NGRX Playground</span>
+
+  <span class="spacer"></span>
+
+  <ng-container *ngIf="!hideActions">
+    <button mat-icon-button matBadge="7" matBadgeSize="small">
+      <mat-icon>request_page</mat-icon>
+    </button>
+    <button mat-icon-button (click)="addCourse()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </ng-container>
+</mat-toolbar>

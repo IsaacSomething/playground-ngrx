@@ -1,0 +1,17 @@
+@use '@angular/material' as mat;
+@import '@angular/material/theming';
+@include mat.core();
+
+:root {
+  --base-divider: #f3f3f3;
+  --base-spacing: 16px;
+  --base-primary-font: 'Quicksand', sans-serif;
+  --base-secondary-font: 'Roboto', sans-serif;
+
+  --base-font-size: 14px;
+  --base-text: #505050;
+  --base-text-disabled: #cbcbcb;
+  --base-bg: #ffffff;
+  --base-bar: #ffffff;
+  --base-card: #ffffff;
+}

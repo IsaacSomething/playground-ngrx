@@ -1,0 +1,14 @@
+:host {
+  height: 100%;
+  width: 100%;
+  > div {
+    height: calc(100vh - 120px);
+    width: 100%;
+  }
+}
+
+mat-card {
+  margin-top: -64px;
+  min-width: 450px;
+  border: 1px solid var(--base-divider);
+}

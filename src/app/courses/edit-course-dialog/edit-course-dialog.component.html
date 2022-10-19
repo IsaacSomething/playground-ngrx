@@ -1,0 +1,46 @@
+<h2 mat-dialog-title>{{ dialogTitle }}</h2>
+
+<mat-dialog-content>
+  <ng-container *ngIf="form">
+    <div class="spinner-container" *ngIf="loading$ | async">
+      <mat-spinner></mat-spinner>
+    </div>
+
+    <ng-container [formGroup]="form">
+      <mat-form-field>
+        <input matInput placeholder="Course Description" formControlName="description" />
+      </mat-form-field>
+
+      <ng-container *ngIf="mode == 'create'">
+        <mat-form-field>
+          <input matInput placeholder="Course Url" formControlName="url" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Course Icon Url" formControlName="iconUrl" />
+        </mat-form-field>
+      </ng-container>
+
+      <mat-form-field>
+        <mat-select placeholder="Select category" formControlName="category">
+          <mat-option value="BEGINNER"> Beginner</mat-option>
+          <mat-option value="INTERMEDIATE"> Intermediate</mat-option>
+          <mat-option value="ADVANCED"> Advanced</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea matInput placeholder="Description" formControlName="longDescription"> </textarea>
+      </mat-form-field>
+
+      <br />
+      <mat-slide-toggle formControlName="promo" class="margin-bottom">Promo</mat-slide-toggle>
+    </ng-container>
+  </ng-container>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-stroked-button [disabled]="!form.valid || (this.loading$ | async)" (click)="onSave()">Save</button>
+  <span class="spacer"></span>
+  <button mat-stroked-button (click)="onClose()" color="warn">Close</button>
+</mat-dialog-actions>

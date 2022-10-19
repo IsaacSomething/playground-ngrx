@@ -1,0 +1,54 @@
+@use '@angular/material' as mat;
+@import '@angular/material/theming';
+@include mat.core();
+@import './palette';
+
+$base-primary: mat.define-palette($base-primary-palette);
+$base-accent: mat.define-palette($base-accent-palette);
+$base-warn: mat.define-palette($base-warn-palette);
+$base-theme: mat.define-light-theme($base-primary, $base-accent, $base-warn);
+
+$base-theme-background: (
+  status-bar: var(--base-bg),
+  app-bar: #fff,
+  background: var(--base-bg),
+  hover: rgba(black, 0.04),
+  card: var(--base-bg),
+  dialog: var(--base-bg),
+  disabled-button: rgba(black, 0.12),
+  // raised-button: white,
+  // focused-button: $dark-focused,
+  // selected-button: map_get(mat.$grey-palette, 300),
+  // selected-disabled-button: map_get(mat.$grey-palette, 400),
+  // disabled-button-toggle: map_get(mat.$grey-palette, 200),
+  // unselected-chip: map_get(mat.$grey-palette, 300),
+  // disabled-list-option: map_get(mat.$grey-palette, 200)
+);
+
+$base-theme-foreground: (
+  base: var(--base-bg),
+  divider: var(--base-divider),
+  dividers: var(--base-divider),
+  // disabled: $dark-disabled-text,
+  // disabled-button: rgba(black, 0.26),
+  // disabled-text: $dark-disabled-text,
+  // elevation: black,
+  // hint-text: $dark-disabled-text,
+  // secondary-text: var(--base-app-text-secondary),
+  icon: var(--base-text),
+  icons: var(--base-text),
+  text: var(--base-text),
+  // slider-min: rgba(black, 0.87),
+  // slider-off: rgba(black, 0.26),
+  // slider-off-active: rgba(black, 0.38)
+);
+
+$base-theme: map-merge(
+  $base-theme,
+  (
+    background: $base-theme-background,
+    foreground: $base-theme-foreground
+  )
+);
+
+@include mat.all-component-themes($base-theme);

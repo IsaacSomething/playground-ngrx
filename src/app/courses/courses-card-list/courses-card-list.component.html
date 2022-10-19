@@ -1,0 +1,29 @@
+<div fxLayout=" grid" fxLayoutAlign="start stretch" fxLayoutGap="16px">
+  <mat-card fxLayout="column" fxFlex="30%" *ngFor="let course of courses" class="mat-elevation-z0">
+    <mat-card-header>
+      <mat-card-title>{{ course.description }}</mat-card-title>
+    </mat-card-header>
+
+    <img mat-card-image [src]="course.iconUrl" />
+
+    <mat-card-content>
+      <p>{{ course.longDescription }}</p>
+    </mat-card-content>
+
+    <span fxFlex="1 0 auto"></span>
+
+    <mat-card-actions>
+      <button mat-stroked-button [routerLink]="['/courses', course.url]">VIEW</button>
+
+      <span fxFlex="1 0 auto"></span>
+
+      <button mat-icon-button>
+        <mat-icon class="add-course-btn" (click)="editCourse(course)"> edit </mat-icon>
+      </button>
+
+      <button mat-icon-button>
+        <mat-icon (click)="onDeleteCourse(course)">delete</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

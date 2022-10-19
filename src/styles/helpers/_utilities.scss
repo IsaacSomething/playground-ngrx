@@ -1,0 +1,91 @@
+$positions: top, left, bottom, right;
+
+/* MARGINS */
+.margin {
+  margin: var(--base-spacing) !important;
+}
+
+.no-margin {
+  margin: 0 !important;
+}
+
+@each $margin in $positions {
+  .margin-#{$margin} {
+    margin-#{$margin}: var(--base-spacing) !important;
+  }
+}
+
+/* PADDING */
+.padding {
+  padding: var(--base-spacing) !important;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
+@each $padding in $positions {
+  .padding-#{$padding} {
+    padding-#{$padding}: var(--base-spacing) !important;
+  }
+}
+
+/* TEXT */
+$text-transform: (
+  upper: uppercase,
+  lower: lowercase,
+  cap: capitalize,
+  none: none
+);
+
+@each $name, $prop in $text-transform {
+  .text-#{$name} {
+    text-transform: $prop !important;
+  }
+}
+
+$text-align: center, left, right;
+
+@each $name in $text-align {
+  .text-#{$name} {
+    text-align: $name !important;
+  }
+}
+
+$text-color: primary, accent, warn;
+
+@each $name in $text-color {
+  .text-#{$name} {
+    color: var(--base-#{$name}) !important;
+  }
+}
+
+.first-upper::first-letter {
+  text-transform: uppercase;
+}
+
+$font-weight: 400, 500, 700, 900;
+
+@each $name in $font-weight {
+  .weight-#{$name} {
+    font-weight: $name !important;
+  }
+}
+
+/* MISC */
+.block {
+  display: block !important;
+}
+
+.full {
+  display: block !important;
+  width: 100% !important;
+}
+
+.pointer {
+  cursor: pointer !important;
+}
+
+.reverse {
+  transform: rotate(180deg);
+}

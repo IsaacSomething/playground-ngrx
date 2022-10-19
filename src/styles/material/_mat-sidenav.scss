@@ -1,0 +1,30 @@
+$sidnav-width: 275px;
+
+.mat-drawer-container {
+  width: 100%;
+
+  .mat-sidenav {
+    min-width: $sidnav-width;
+    .mat-nav-list {
+      padding: 0;
+    }
+  }
+
+  .mat-sidenav-content {
+    margin-left: $sidnav-width;
+    &.small {
+      margin-left: 0;
+    }
+  }
+}
+
+.mat-sidenav-container {
+  &.hide {
+    .mat-sidenav {
+      display: none;
+    }
+    .mat-sidenav-content {
+      margin-left: 0 !important;
+    }
+  }
+}
