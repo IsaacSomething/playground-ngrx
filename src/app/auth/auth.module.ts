@@ -10,6 +10,9 @@ import { AuthService } from './auth.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { StoreModule } from '@ngrx/store';
 import * as fromAuth from './reducers';
+import { AuthGuard } from './auth.guard';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './auth.effects';
 
 @NgModule({
   imports: [
@@ -20,7 +23,8 @@ import * as fromAuth from './reducers';
     MatButtonModule,
     FlexLayoutModule,
     RouterModule.forChild([{ path: '', component: LoginComponent }]),
-    StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.authReducer)
+    StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.authReducer),
+    EffectsModule.forFeature([AuthEffects])
   ],
   declarations: [LoginComponent],
   exports: [LoginComponent]
@@ -29,7 +33,7 @@ export class AuthModule {
   static forRoot(): ModuleWithProviders<AuthModule> {
     return {
       ngModule: AuthModule,
-      providers: [AuthService]
+      providers: [AuthService, AuthGuard]
     };
   }
 }

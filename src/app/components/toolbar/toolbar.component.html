@@ -6,14 +6,14 @@
 
   <span class="spacer"></span>
 
-  <ng-container *ngIf="!hideActions">
+  <ng-container>
     <button mat-icon-button matBadge="0" matBadgeSize="small" class="promo">
       <mat-icon>sell</mat-icon>
     </button>
     <div class="user" [matMenuTriggerFor]="user" #menuTrigger>
       <img src="https://picsum.photos/id/237/30/30" alt="user" />
     </div>
-    <button mat-icon-button routerLink="/login">
+    <button mat-icon-button (click)="logout()">
       <mat-icon>logout</mat-icon>
     </button>
   </ng-container>

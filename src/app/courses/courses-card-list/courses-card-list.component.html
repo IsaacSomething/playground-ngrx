@@ -1,8 +1,8 @@
-<div fxLayout=" grid" fxLayoutAlign="start stretch" fxLayoutGap="16px">
-  <mat-card fxLayout="column" fxFlex="30%" *ngFor="let course of courses" class="mat-elevation-z0">
+<div fxLayout="row wrap" fxLayoutAlign="start stretch" fxLayoutGap="16px">
+  <mat-card fxLayout="column" fxFlex="calc(33% - 12px)" *ngFor="let course of courses" class="mat-elevation-z0">
     <img mat-card-image [src]="course.iconUrl" />
 
-    <mat-card-header>
+    <mat-card-header class="no-margin">
       <mat-card-title>{{ course.description }}</mat-card-title>
     </mat-card-header>
 

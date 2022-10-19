@@ -1,5 +1,8 @@
 <div class="course" *ngIf="course$ | async as course">
-  <h2>{{ course?.description }}</h2>
+  <div fxLayout="row" fxLayoutAlign="start center" class="margin-bottom">
+    <button mat-icon-button class="margin-right" (click)="back()"><mat-icon>arrow_back</mat-icon></button>
+    <h2 class="no-margin">{{ course?.description }}</h2>
+  </div>
 
   <img class="course-thumbnail mat-elevation-z8" [src]="course?.iconUrl" />
 

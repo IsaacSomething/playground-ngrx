@@ -3,23 +3,15 @@ import { ActivatedRoute } from '@angular/router';
 import { Course } from '../model/course';
 import { Observable } from 'rxjs';
 import { Lesson } from '../model/lesson';
-import {
-  concatMap,
-  delay,
-  filter,
-  first,
-  map,
-  shareReplay,
-  tap,
-  withLatestFrom,
-} from 'rxjs/operators';
+import { concatMap, delay, filter, first, map, shareReplay, tap, withLatestFrom } from 'rxjs/operators';
 import { CoursesHttpService } from '../services/courses-http.service';
 import { CdkTableDataSourceInput } from '@angular/cdk/table';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'course',
   templateUrl: './course.component.html',
-  styleUrls: ['./course.component.scss'],
+  styleUrls: ['./course.component.scss']
 })
 export class CourseComponent implements OnInit {
   course$!: Observable<Course>;
@@ -28,10 +20,7 @@ export class CourseComponent implements OnInit {
   nextPage = 0;
   loading$: any;
 
-  constructor(
-    private coursesService: CoursesHttpService,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private coursesService: CoursesHttpService, private route: ActivatedRoute, private location: Location) {}
 
   ngOnInit() {
     const courseUrl = this.route.snapshot.paramMap.get('courseUrl');
@@ -39,9 +28,13 @@ export class CourseComponent implements OnInit {
     this.course$ = this.coursesService.findCourseByUrl(courseUrl);
 
     this.lessons$ = this.course$.pipe(
-      concatMap((course) => this.coursesService.findLessons(course.id)),
+      concatMap(course => this.coursesService.findLessons(course.id)),
       tap(console.log)
     );
+  }
+
+  back() {
+    this.location.back();
   }
 
   loadLessonsPage(course: Course) {}
