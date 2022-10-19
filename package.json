@@ -1,12 +1,12 @@
 {
-  "name": "angular-base-ngrx",
-  "version": "14.2.0",
+  "name": "playground-ngrx",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "start": "ng serve  --proxy-config ./proxy.json -o",
+    "start": "ng serve  --proxy-config .server/proxy.json",
     "server": "ts-node -P ./server/server.tsconfig.json ./server/server.ts",
     "lint": "ng lint",
     "e2e": "ng e2e"
