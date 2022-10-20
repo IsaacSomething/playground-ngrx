@@ -3,7 +3,7 @@ export const USERS = {
     id: 1,
     email: 'test@angular-university.io',
     password: 'test',
-    image: 'https://picsum.photos/id/237/20/20',
+    image: 'https://picsum.photos/id/237/120/120',
     name: 'Test user',
     role: 'Tester'
   },
@@ -11,7 +11,7 @@ export const USERS = {
     id: 2,
     email: 'arkade@angular-university.io',
     password: 'test',
-    image: 'https://picsum.photos/id/238/20/20',
+    image: 'https://picsum.photos/id/238/120/120',
     name: 'Arkade',
     role: 'System Admin'
   }

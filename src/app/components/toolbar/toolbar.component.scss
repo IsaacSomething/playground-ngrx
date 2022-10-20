@@ -5,8 +5,16 @@
 .user {
   margin: 0 6px 0 11px;
   height: 30px;
+  width: 30px;
+  display: block;
   cursor: pointer;
   img {
     border-radius: 50%;
+    height: 30px;
+    width: 30px;
   }
+}
+
+.name {
+  margin: 0 0 -6px 0 !important;
 }

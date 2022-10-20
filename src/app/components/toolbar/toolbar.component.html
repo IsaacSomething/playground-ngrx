@@ -6,26 +6,29 @@
 
   <span class="spacer"></span>
 
-  <ng-container>
+  <ng-container *ngIf="user$ | async as user">
     <button mat-icon-button matBadge="0" matBadgeSize="small" class="promo">
       <mat-icon>sell</mat-icon>
     </button>
-    <div class="user" [matMenuTriggerFor]="user" #menuTrigger>
-      <img src="https://picsum.photos/id/237/30/30" alt="user" />
+    <div class="user" [matMenuTriggerFor]="userMenu" #menuTrigger>
+      <img [src]="user.image" [alt]="user.name" />
     </div>
     <button mat-icon-button (click)="logout()">
       <mat-icon>logout</mat-icon>
     </button>
+
+    <mat-menu #userMenu="matMenu" class="mat-elevation-z12 user-profile" xPosition="before" [overlapTrigger]="true">
+      <div class="user-image">
+        <img [src]="user.image" [alt]="user.name" />
+      </div>
+      <div class="padding">
+        <p class="name">
+          <strong>{{ user.name }}</strong>
+        </p>
+        <small>{{ user.email }}</small>
+        <br />
+        <small>ROLE: {{ user.role }}</small>
+      </div>
+    </mat-menu>
   </ng-container>
 </mat-toolbar>
-
-<mat-menu #user="matMenu" class="mat-elevation-z12 user-profile">
-  <div class="user-image">
-    <img src="https://picsum.photos/id/237/120/120" alt="user" />
-  </div>
-  <div class="padding">
-    <p class="no-margin">[NAME HERE]</p>
-    <small>[EMAIL HERE]</small><br />
-    <small>[ROLE]</small>
-  </div>
-</mat-menu>
