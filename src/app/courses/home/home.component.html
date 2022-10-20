@@ -1,21 +1,19 @@
-<div>
-  <small class="text-upper"> In Promo: {{ promoTotal$ | async }} </small>
+<small class="text-upper"> In Promo: {{ promoTotal$ | async }} </small>
 
-  <div class="spinner-container" *ngIf="!(loading$ | async)">
-    <mat-spinner></mat-spinner>
-  </div>
+<div fxLayout="row" fxLayoutAlign="center center" class="loader" *ngIf="!(loading$ | async)">
+  <mat-spinner></mat-spinner>
+</div>
 
-  <div fxLayout="row" fxLayoutAlign="start start" *ngIf="beginnerCourses$ | async as beginnerCourses">
-    <mat-tab-group>
-      <mat-tab label="Beginners">
-        <courses-card-list (courseChanged)="reload()" [courses]="beginnerCourses"> </courses-card-list>
-      </mat-tab>
+<div fxLayout="row" fxLayoutAlign="start start" *ngIf="beginnerCourses$ | async as beginnerCourses">
+  <mat-tab-group [dynamicHeight]="true">
+    <mat-tab label="Beginners">
+      <courses-card-list (courseChanged)="reload()" [courses]="beginnerCourses"> </courses-card-list>
+    </mat-tab>
 
-      <mat-tab label="Advanced" *ngIf="advancedCourses$ | async as advancedCourses">
-        <courses-card-list (courseChanged)="reload()" [courses]="advancedCourses"></courses-card-list>
-      </mat-tab>
-    </mat-tab-group>
+    <mat-tab label="Advanced" *ngIf="advancedCourses$ | async as advancedCourses">
+      <courses-card-list (courseChanged)="reload()" [courses]="advancedCourses"></courses-card-list>
+    </mat-tab>
+  </mat-tab-group>
 
-    <button mat-icon-button class="btn-add" (click)="onAddCourse()"><mat-icon>add</mat-icon></button>
-  </div>
+  <button mat-icon-button class="btn-add" (click)="onAddCourse()"><mat-icon>add</mat-icon></button>
 </div>
