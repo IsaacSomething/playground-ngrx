@@ -16,10 +16,20 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 import { EffectsModule } from '@ngrx/effects';
+import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';
 const ngrxImports = [
-  StoreModule.forRoot(reducers, { metaReducers }),
+  StoreModule.forRoot(reducers, {
+    metaReducers,
+    runtimeChecks: {
+      strictActionImmutability: true,
+      strictStateImmutability: true,
+      strictActionSerializability: true,
+      strictStateSerializability: true
+    }
+  }),
   StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production, autoPause: true }),
-  EffectsModule.forRoot([])
+  EffectsModule.forRoot([]),
+  StoreRouterConnectingModule.forRoot({ stateKey: 'router', routerState: RouterState.Minimal })
 ];
 
 import { AppComponent } from './app.component';
