@@ -1,17 +1,14 @@
 :host {
   display: block;
-  margin: 16px 0 ;
+  margin: 16px 0;
 }
 
 mat-card {
   margin-bottom: 16px;
   border: 1px solid var(--base-divider);
+  filter: grayscale(70%);
 
-  img {
-    filter: grayscale(70%);
-
-    &:hover {
-      filter: grayscale(0);
-    }
+  &:hover {
+    filter: grayscale(0);
   }
 }

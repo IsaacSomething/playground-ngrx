@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Course } from '../model/course';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -6,11 +6,13 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 import { courseUpdated } from '../course.actions';
+import { CourseEntityService } from '../services/course-entity-service';
 
 @Component({
   selector: 'course-dialog',
   templateUrl: './edit-course-dialog.component.html',
-  styleUrls: ['./edit-course-dialog.component.scss']
+  styleUrls: ['./edit-course-dialog.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditCourseDialogComponent {
   form!: FormGroup;
@@ -23,7 +25,8 @@ export class EditCourseDialogComponent {
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<EditCourseDialogComponent>,
     @Inject(MAT_DIALOG_DATA) data: any,
-    private store: Store
+    private store: Store,
+    private courseEntityService: CourseEntityService
   ) {
     this.dialogTitle = data.dialogTitle;
     this.course = data.course;
@@ -58,12 +61,27 @@ export class EditCourseDialogComponent {
       ...this.form.value
     };
 
-    const update: Update<Course> = {
+    if (this.mode === 'update') {
+      this.courseEntityService.update(course);
+      this.dialogRef.close();
+      return;
+    }
+
+    if (this.mode === 'create') {
+      /* Generally Pessimistic */
+      this.courseEntityService.add(course).subscribe(() => {
+        this.dialogRef.close();
+      });
+
+      return;
+    }
+
+    /* const update: Update<Course> = {
       id: course.id,
       changes: course
     };
 
     this.store.dispatch(courseUpdated({ update }));
-    this.dialogRef.close();
+    this.dialogRef.close(); */
   }
 }

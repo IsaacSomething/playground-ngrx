@@ -17,6 +17,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 const materialImports = [
   MatDatepickerModule,
   MatDialogModule,
@@ -29,13 +30,13 @@ const materialImports = [
   MatTabsModule,
   MatCardModule,
   MatButtonModule,
-  MatIconModule
+  MatIconModule,
+  MatSnackBarModule
 ];
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { RouterModule, Routes } from '@angular/router';
 import { LoaderModule } from '../components/loader';
 const moduleImports = [
   LoaderModule,
@@ -46,36 +47,33 @@ const moduleImports = [
   StoreModule.forFeature(coursesFeatureKey, coursesReducer)
 ];
 
-import { compareCourses, Course } from './model/course';
-import { compareLessons, Lesson } from './model/lesson';
-import { CoursesResolver } from './courses.resolver';
+import { CoursesResolver } from './services/courses.resolver';
 import { CourseComponent } from './course/course.component';
 import { EffectsModule } from '@ngrx/effects';
 import { CoursesEffects } from './courses.effects';
 import { StoreModule } from '@ngrx/store';
 import { coursesFeatureKey, coursesReducer } from './reducers/course.reducers';
-
-export const coursesRoutes: Routes = [
-  {
-    path: '',
-    component: HomeComponent,
-    resolve: {
-      courses: CoursesResolver
-    }
-  },
-  {
-    path: ':courseUrl',
-    component: CourseComponent
-  }
-];
+import { CourseRoutingModule } from './course-routing.module';
+import { EntityDefinitionService, EntityDataService } from '@ngrx/data';
+import { coursesEntityMetadata } from './courses-entity-metadata';
+import { CourseEntityService } from './services/course-entity-service';
+import { CoursesDataService } from './services/courses-data.service';
+import { LessonEntityService } from './services/lesson-entity-service';
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(coursesRoutes), ...materialImports, ...moduleImports],
+  imports: [CommonModule, CourseRoutingModule, ...materialImports, ...moduleImports],
   declarations: [HomeComponent, CoursesCardListComponent, EditCourseDialogComponent, CourseComponent],
   exports: [HomeComponent, CoursesCardListComponent, EditCourseDialogComponent, CourseComponent],
   entryComponents: [EditCourseDialogComponent],
-  providers: [CoursesHttpService, CoursesResolver]
+  providers: [CoursesHttpService, CoursesResolver, CourseEntityService,LessonEntityService, CoursesResolver, CoursesDataService]
 })
 export class CoursesModule {
-  constructor() {}
+  constructor(
+    private eds: EntityDefinitionService,
+    private entityDataService: EntityDataService,
+    private coursesDataService: CoursesDataService
+  ) {
+    this.eds.registerMetadataMap(coursesEntityMetadata);
+    this.entityDataService.registerService('Course', coursesDataService);
+  }
 }
