@@ -1,0 +1,9 @@
+.mat-snack-bar-container {
+  &.warn {
+    background-color: var(--base-bg);
+    .mat-simple-snack-bar-content {
+      color: var(--base-text-warn);
+      font-weight: bold;
+    }
+  }
+}

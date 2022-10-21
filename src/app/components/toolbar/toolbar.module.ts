@@ -17,10 +17,26 @@ import { coursesFeatureKey, coursesReducer } from 'src/app/courses/reducers/cour
 const ngrxModules = [StoreModule.forFeature(coursesFeatureKey, coursesReducer)];
 
 import { ToolbarComponent } from './toolbar.component';
+import { CourseEntityService } from 'src/app/courses/services/course-entity-service';
+import { coursesEntityMetadata } from 'src/app/courses/courses-entity-metadata';
+import { CoursesDataService } from 'src/app/courses/services/courses-data.service';
+import { EntityDefinitionService, EntityDataService } from '@ngrx/data';
+import { CoursesResolver } from 'src/app/courses/services/courses.resolver';
+import { CoursesHttpService } from 'src/app/courses/services/courses-http.service';
 
 @NgModule({
   declarations: [ToolbarComponent],
   exports: [ToolbarComponent],
-  imports: [CommonModule, ...materialImports, ...moduleImports, ...ngrxModules]
+  imports: [CommonModule, ...materialImports, ...moduleImports, ...ngrxModules],
+  providers: [CoursesHttpService, CoursesResolver, CourseEntityService, CoursesResolver, CoursesDataService]
 })
-export class ToolbarModule {}
+export class ToolbarModule {
+  constructor(
+    private eds: EntityDefinitionService,
+    private entityDataService: EntityDataService,
+    private coursesDataService: CoursesDataService
+  ) {
+    this.eds.registerMetadataMap(coursesEntityMetadata);
+    this.entityDataService.registerService('Course', this.coursesDataService);
+  }
+}

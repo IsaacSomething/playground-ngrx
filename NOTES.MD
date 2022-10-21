@@ -1,4 +1,5 @@
 # Notes
+
 ### Reducers
 
 - Sets up framework for manipulating the single store object
@@ -28,6 +29,8 @@
   ids: number[];
 ```
 
+### Data
+
 ### Dev tools
 
 - Router store for time travel
@@ -41,3 +44,4 @@
 - ~~Viewing the time travel router events, the login dialog box is viewable after logging in for a second. Once logged in there
   should be no login box, router-outlet should be clean.~~
 - ~~Promo amount is not being set on first load (set selector in toolbar?)~~
+- Prevent large imports of providers for course entity service when used outside of feature module - See toolbar module (forRoot?)

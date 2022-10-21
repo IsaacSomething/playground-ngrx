@@ -27,6 +27,8 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';
+import { EntityDataModule } from '@ngrx/data';
+import { entityConfig } from './entity-metadata';
 const ngrxImports = [
   StoreModule.forRoot(reducers, {
     metaReducers,
@@ -39,7 +41,8 @@ const ngrxImports = [
   }),
   StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production, autoPause: true }),
   EffectsModule.forRoot([]),
-  StoreRouterConnectingModule.forRoot({ stateKey: 'router', routerState: RouterState.Minimal })
+  StoreRouterConnectingModule.forRoot({ stateKey: 'router', routerState: RouterState.Minimal }),
+  EntityDataModule.forRoot({})
 ];
 
 import { MatSidenavModule } from '@angular/material/sidenav';
