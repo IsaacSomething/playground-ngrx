@@ -1,13 +1,11 @@
-<small class="text-upper"> In Promo: {{ promoTotal$ | async }} </small>
-
-<div fxLayout="row" fxLayoutAlign="center center" class="loader" *ngIf="!(loading$ | async)">
-  <mat-spinner></mat-spinner>
-</div>
-
 <div fxLayout="row" fxLayoutAlign="start start" *ngIf="beginnerCourses$ | async as beginnerCourses">
   <mat-tab-group [dynamicHeight]="true">
     <mat-tab label="Beginners">
       <courses-card-list (courseChanged)="reload()" [courses]="beginnerCourses"> </courses-card-list>
+    </mat-tab>
+
+    <mat-tab label="Intermediate" *ngIf="intermediateCourses$ | async as intermediateCourses">
+      <courses-card-list (courseChanged)="reload()" [courses]="intermediateCourses"></courses-card-list>
     </mat-tab>
 
     <mat-tab label="Advanced" *ngIf="advancedCourses$ | async as advancedCourses">

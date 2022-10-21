@@ -1,0 +1,5 @@
+export enum courseType {
+  ADVANCED = 'ADVANCED',
+  BEGINNER = 'BEGINNER',
+  INTERMEDIATE = 'INTERMEDIATE'
+}

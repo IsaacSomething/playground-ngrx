@@ -4,6 +4,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { select, Store } from '@ngrx/store';
 import { logout } from 'src/app/auth/auth.actions';
 import { user } from 'src/app/auth/auth.selectors';
+import { selectPromoTotal } from 'src/app/courses/courses.selectors';
 import { EditCourseDialogComponent } from 'src/app/courses/edit-course-dialog/edit-course-dialog.component';
 import { defaultDialogConfig } from 'src/app/courses/shared/default-dialog-config';
 
@@ -16,6 +17,7 @@ export class ToolbarComponent {
   @Input() sidenav!: MatSidenav;
   @Input() small!: boolean | null;
   user$ = this.store.pipe(select(user));
+  promoTotal$ = this.store.pipe(select(selectPromoTotal));
 
   constructor(private dialog: MatDialog, private store: Store) {}
 

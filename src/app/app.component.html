@@ -7,6 +7,7 @@
     <base-toolbar *ngIf="isLoggedIn$ | async" [sidenav]="sidenav" [small]="small$ | async"></base-toolbar>
 
     <div class="router-container">
+      <base-loader *ngIf="loading"></base-loader>
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>

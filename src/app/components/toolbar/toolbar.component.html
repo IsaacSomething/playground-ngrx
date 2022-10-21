@@ -7,7 +7,7 @@
   <span class="spacer"></span>
 
   <ng-container *ngIf="user$ | async as user">
-    <button mat-icon-button matBadge="0" matBadgeSize="small" class="promo">
+    <button mat-icon-button [matBadgeHidden]="!(promoTotal$ | async)" [matBadge]="promoTotal$ | async" matBadgeSize="small" class="promo">
       <mat-icon>sell</mat-icon>
     </button>
     <div class="user" [matMenuTriggerFor]="userMenu" #menuTrigger>

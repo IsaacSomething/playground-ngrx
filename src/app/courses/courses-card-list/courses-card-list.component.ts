@@ -25,8 +25,8 @@ export class CoursesCardListComponent implements OnInit {
 
     dialogConfig.data = {
       dialogTitle: 'Edit Course',
-      course,
-      mode: 'update'
+      mode: 'update',
+      course
     };
 
     this.dialog

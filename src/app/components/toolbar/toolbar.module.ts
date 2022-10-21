@@ -12,11 +12,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 const materialImports = [MatIconModule, MatToolbarModule, MatButtonModule, MatBadgeModule, MatDialogModule, MatMenuModule];
 
+import { StoreModule } from '@ngrx/store';
+import { coursesFeatureKey, coursesReducer } from 'src/app/courses/reducers/course.reducers';
+const ngrxModules = [StoreModule.forFeature(coursesFeatureKey, coursesReducer)];
+
 import { ToolbarComponent } from './toolbar.component';
 
 @NgModule({
   declarations: [ToolbarComponent],
   exports: [ToolbarComponent],
-  imports: [CommonModule, ...materialImports, ...moduleImports]
+  imports: [CommonModule, ...materialImports, ...moduleImports, ...ngrxModules]
 })
 export class ToolbarModule {}

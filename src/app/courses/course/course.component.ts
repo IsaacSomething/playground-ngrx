@@ -16,9 +16,9 @@ import { Location } from '@angular/common';
 export class CourseComponent implements OnInit {
   course$!: Observable<Course>;
   lessons$: Observable<CdkTableDataSourceInput<Lesson>> | undefined;
+  loading$!: Observable<boolean>;
   displayedColumns = ['seqNo', 'description', 'duration'];
   nextPage = 0;
-  loading$: any;
 
   constructor(private coursesService: CoursesHttpService, private route: ActivatedRoute, private location: Location) {}
 
@@ -31,6 +31,8 @@ export class CourseComponent implements OnInit {
       concatMap(course => this.coursesService.findLessons(course.id)),
       tap(console.log)
     );
+
+    this.loading$ = this.course$.pipe(map(course => !course));
   }
 
   back() {

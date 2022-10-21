@@ -9,7 +9,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSortModule } from '@angular/material/sort';
@@ -23,7 +22,6 @@ const materialImports = [
   MatDialogModule,
   MatInputModule,
   MatPaginatorModule,
-  MatProgressSpinnerModule,
   MatSelectModule,
   MatSlideToggleModule,
   MatSortModule,
@@ -37,20 +35,33 @@ const materialImports = [
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { FlexLayoutModule } from '@angular/flex-layout';
-const moduleImports = [ReactiveFormsModule, MatMomentDateModule, FlexLayoutModule];
-
 import { RouterModule, Routes } from '@angular/router';
+import { LoaderModule } from '../components/loader';
+const moduleImports = [
+  LoaderModule,
+  ReactiveFormsModule,
+  MatMomentDateModule,
+  FlexLayoutModule,
+  EffectsModule.forFeature([CoursesEffects]),
+  StoreModule.forFeature(coursesFeatureKey, coursesReducer)
+];
 
 import { compareCourses, Course } from './model/course';
-
 import { compareLessons, Lesson } from './model/lesson';
-
+import { CoursesResolver } from './courses.resolver';
 import { CourseComponent } from './course/course.component';
+import { EffectsModule } from '@ngrx/effects';
+import { CoursesEffects } from './courses.effects';
+import { StoreModule } from '@ngrx/store';
+import { coursesFeatureKey, coursesReducer } from './reducers/course.reducers';
 
 export const coursesRoutes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
+    resolve: {
+      courses: CoursesResolver
+    }
   },
   {
     path: ':courseUrl',
@@ -63,7 +74,7 @@ export const coursesRoutes: Routes = [
   declarations: [HomeComponent, CoursesCardListComponent, EditCourseDialogComponent, CourseComponent],
   exports: [HomeComponent, CoursesCardListComponent, EditCourseDialogComponent, CourseComponent],
   entryComponents: [EditCourseDialogComponent],
-  providers: [CoursesHttpService]
+  providers: [CoursesHttpService, CoursesResolver]
 })
 export class CoursesModule {
   constructor() {}
